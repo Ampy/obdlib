@@ -1,4 +1,4 @@
-obdlib
+OBDLib
 ======
 
 OBDLib is an OBD2 (On-board diagnostics http://en.wikipedia.org/wiki/On-board_diagnostics) library in C# (.NET 4.0). It is in early stage of development, only a few OBD2 PID are implemented for the moment.
