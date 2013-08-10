@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!--This file represents the results of running a test suite-->
+<test-results name="D:\Documents\Development\OBDLibrary\trunk\OBDLibrary.NET.UnitTests\bin\Debug\OBDLibrary.NET.UnitTests.dll" total="1" errors="0" failures="1" not-run="0" inconclusive="0" ignored="0" skipped="0" invalid="0" date="2012-07-21" time="10:05:00">
+  <environment nunit-version="2.6.0.12051" clr-version="2.0.50727.4223" os-version="Microsoft Windows NT 6.0.6002 Service Pack 2" platform="Win32NT" cwd="D:\Documents\Development\OBDLibrary\trunk\DLL\NUnit-2.6.0.12051\bin" machine-name="PCPERSO" user="Isabelle" user-domain="PCPERSO" />
+  <culture-info current-culture="fr-FR" current-uiculture="fr-FR" />
+  <test-suite type="Assembly" name="D:\Documents\Development\OBDLibrary\trunk\OBDLibrary.NET.UnitTests\bin\Debug\OBDLibrary.NET.UnitTests.dll" executed="True" result="Failure" success="False" time="1.053" asserts="0">
+    <results>
+      <test-suite type="Namespace" name="OBD2" executed="True" result="Failure" success="False" time="1.035" asserts="0">
+        <results>
+          <test-suite type="Namespace" name="Library" executed="True" result="Failure" success="False" time="1.034" asserts="0">
+            <results>
+              <test-suite type="Namespace" name="UnitTests" executed="True" result="Failure" success="False" time="1.034" asserts="0">
+                <results>
+                  <test-suite type="TestFixture" name="ConnectionTest" executed="True" result="Failure" success="False" time="1.032" asserts="0">
+                    <results>
+                      <test-case name="OBD2.Library.UnitTests.ConnectionTest.GetSensorValueTest" executed="True" result="Failure" success="False" time="1.012" asserts="197379">
+                        <failure>
+                          <message><![CDATA[  Sensor (Control module voltage), raw value: 00 00 00  0, computed value: 0
+  Expected: less than or equal to 0.0d
+  But was:  100.0d
+]]></message>
+                          <stack-trace><![CDATA[à OBD2.Library.UnitTests.ConnectionTest.SensorValueTest(Sensor sensor, String value) dans d:\Documents\Development\OBDLibrary\trunk\OBDLibrary.NET.UnitTests\ConnectionTest.cs:ligne 63
+à OBD2.Library.UnitTests.ConnectionTest.NestedLoops(Int32 loopCount, Int32 max, String str, Sensor sensor, SensorValueTestDelegate method) dans d:\Documents\Development\OBDLibrary\trunk\OBDLibrary.NET.UnitTests\ConnectionTest.cs:ligne 45
+à OBD2.Library.UnitTests.ConnectionTest.NestedLoops(Int32 loopCount, Int32 max, String str, Sensor sensor, SensorValueTestDelegate method) dans d:\Documents\Development\OBDLibrary\trunk\OBDLibrary.NET.UnitTests\ConnectionTest.cs:ligne 49
+à OBD2.Library.UnitTests.ConnectionTest.GetSensorValueTest() dans d:\Documents\Development\OBDLibrary\trunk\OBDLibrary.NET.UnitTests\ConnectionTest.cs:ligne 74
+]]></stack-trace>
+                        </failure>
+                      </test-case>
+                    </results>
+                  </test-suite>
+                </results>
+              </test-suite>
+            </results>
+          </test-suite>
+        </results>
+      </test-suite>
+    </results>
+  </test-suite>
+</test-results>

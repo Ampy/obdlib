@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>10.0.0</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{74C0C9AA-16DE-4D7A-9E1F-F8E408985A2E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>OBD2.Library</RootNamespace>
+    <AssemblyName>OBDLibrary.NET</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>none</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="Constants.cs" />
+    <Compile Include="Enums.cs" />
+    <Compile Include="Sensors\ResultType\FuelTypeSensor.cs" />
+    <Compile Include="Sensors\ResultType\NumericSensor.cs" />
+    <Compile Include="Sensors\AbsoluteLoadValue.cs" />
+    <Compile Include="Sensors\BarometricPressure.cs" />
+    <Compile Include="Sensors\ControlModuleVoltage.cs" />
+    <Compile Include="Sensors\EthanolFuelPercentage.cs" />
+    <Compile Include="Sensors\FuelType.cs" />
+    <Compile Include="Connection.cs" />
+    <Compile Include="Sensors\CalculatedEngineLoad.cs" />
+    <Compile Include="Sensors\EngineCoolantTemperature.cs" />
+    <Compile Include="Sensors\EngineRPM.cs" />
+    <Compile Include="Sensors\FuelPressure.cs" />
+    <Compile Include="Sensors\IntakeAirTemperature.cs" />
+    <Compile Include="Sensors\IntakeManifoldAbsolutePressure.cs" />
+    <Compile Include="Sensors\MAFAirFlowRate.cs" />
+    <Compile Include="Sensors\RunTimeSinceEngineStart.cs" />
+    <Compile Include="Sensor.cs" />
+    <Compile Include="Sensors\ThrottlePosition.cs" />
+    <Compile Include="Sensors\TimingAdvance.cs" />
+    <Compile Include="Sensors\VehicleSpeed.cs" />
+    <Compile Include="Sensors\CommandedEGR.cs" />
+    <Compile Include="Sensors\EGRError.cs" />
+    <Compile Include="Sensors\CommandedEvaporativePurge.cs" />
+    <Compile Include="Sensors\FuelLevelInput.cs" />
+    <Compile Include="Sensors\NumberOfWarmUpsSinceCodesCleared.cs" />
+    <Compile Include="Sensors\DistanceTraveledSinceCodesCleared.cs" />
+    <Compile Include="Sensors\Values\SensorValue.cs" />
+    <Compile Include="SerialPort.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Sensors\Values\NumericValue.cs" />
+    <Compile Include="Sensors\Values\FuelTypeValue.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup />
+</Project>
