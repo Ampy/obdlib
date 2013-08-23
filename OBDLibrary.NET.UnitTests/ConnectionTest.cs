@@ -21,8 +21,8 @@ namespace OBD2.Library.UnitTests
                 var message =
                     string.Concat("Sensor (", numericSensor.Label, "), raw value: ", value, ", computed value: ",
                                   strMaxValue);
-                Assert.LessOrEqual(numericSensor.MinValue, sensorValue.Value.Value, message);
-                Assert.GreaterOrEqual(numericSensor.MaxValue, sensorValue.Value.Value, message);
+                Assert.LessOrEqual(sensorValue.Value.Value, numericSensor.MaxValue, message);
+                Assert.GreaterOrEqual(sensorValue.Value.Value, numericSensor.MinValue, message);
             }
             else
             {
@@ -36,8 +36,8 @@ namespace OBD2.Library.UnitTests
                     var strMaxValue = fuelTypeIntValue.ToString(CultureInfo.InvariantCulture);
                     var mesage = string.Concat("Sensor (", typeSensor.Label, "), raw value: ", value + ", computed value: ",
                                                strMaxValue);
-                    Assert.LessOrEqual(typeSensor.MinValue, fuelTypeIntValue, mesage);
-                    Assert.GreaterOrEqual(typeSensor.MaxValue, fuelTypeIntValue, mesage);
+                    Assert.LessOrEqual(fuelTypeIntValue, typeSensor.MaxValue, mesage);
+                    Assert.GreaterOrEqual(fuelTypeIntValue, typeSensor.MinValue, mesage);
                 }
                 else
                 {
@@ -101,9 +101,9 @@ namespace OBD2.Library.UnitTests
                     var strMinValue = sensorMinValue.Value.Value.ToString(CultureInfo.InvariantCulture);
                     var message = string.Concat("Sensor (", numericSensor.Label, ") raw value: ", rawValue,
                                                 ", computed value: ", strMinValue);
-                    Assert.LessOrEqual(numericSensor.MinValue, sensorMinValue.Value.Value, message);
-                    Assert.GreaterOrEqual(numericSensor.MaxValue, sensorMinValue.Value.Value, message);
-                    Assert.AreEqual(numericSensor.MinValue, sensorMinValue.Value.Value, message);
+                    Assert.LessOrEqual(sensorMinValue.Value.Value, numericSensor.MaxValue, message);
+                    Assert.GreaterOrEqual(sensorMinValue.Value.Value, numericSensor.MinValue, message);
+                    Assert.AreEqual(sensorMinValue.Value.Value, numericSensor.MinValue, message);
                 }
                 else
                 {
@@ -117,7 +117,7 @@ namespace OBD2.Library.UnitTests
                         var strMinValue = fuelTypeIntValue.ToString(CultureInfo.InvariantCulture);
                         var message = string.Concat("Sensor (", typeSensor.Label, ") raw value: ", rawValue,
                                                     ", computed value: ", strMinValue);
-                        Assert.LessOrEqual(typeSensor.MinValue, fuelTypeIntValue, message);
+                        Assert.LessOrEqual(fuelTypeIntValue, typeSensor.MaxValue, message);
                     }
                     else
                     {
@@ -137,32 +137,37 @@ namespace OBD2.Library.UnitTests
                 string hexMaxValueB;
                 var hexMaxValueA = hexMaxValueB = byte.MaxValue.ToString("X2");
                 var rawValue = string.Concat("00", split, "00", split, hexMaxValueA, split, hexMaxValueB);
-                if (sensor is NumericSensor)
+                var numericSensor = sensor as NumericSensor;
+                if (numericSensor != null)
                 {
-                    var sensorMaxValue = Connection.GetSensorValue((NumericSensor)sensor, rawValue);
+                    var sensorMaxValue = Connection.GetSensorValue(numericSensor, rawValue);
                     Assert.IsNotNull(sensorMaxValue);
                     Assert.IsNotNull(sensorMaxValue.Value);
                     var strMaxValue = sensorMaxValue.Value.Value.ToString(CultureInfo.InvariantCulture);
-                    var message = string.Concat("Sensor (", sensor.Label, ") raw value: ", rawValue,
+                    var message = string.Concat("Sensor (", numericSensor.Label, ") raw value: ", rawValue,
                             ", computed value: ", strMaxValue);
-                    Assert.LessOrEqual(sensor.MinValue, sensorMaxValue.Value.Value, message);
-                    Assert.GreaterOrEqual(sensor.MaxValue, sensorMaxValue.Value.Value, message);
-                    Assert.AreEqual(sensor.MaxValue, sensorMaxValue.Value.Value, message);
-                }
-                else if (sensor is FuelTypeSensor)
-                {
-                    var sensorValue = Connection.GetSensorValue((FuelTypeSensor)sensor, rawValue);
-                    Assert.IsNotNull(sensorValue, sensor.Label);
-                    Assert.IsNotNull(sensorValue.Value, sensor.Label);
-                    var fuelTypeIntValue = (int)sensorValue.Value;
-                    var strMaxValue = fuelTypeIntValue.ToString(CultureInfo.InvariantCulture);
-                    var message = string.Concat("Sensor (", sensor.Label, ") raw value: ", rawValue,
-                                                ", computed value: ", strMaxValue);
-                    Assert.GreaterOrEqual(sensor.MaxValue, fuelTypeIntValue, message);
+                    Assert.LessOrEqual(sensorMaxValue.Value.Value, numericSensor.MaxValue, message);
+                    Assert.GreaterOrEqual(sensorMaxValue.Value.Value, numericSensor.MinValue, message);
+                    Assert.AreEqual(sensorMaxValue.Value.Value, numericSensor.MaxValue, message);
                 }
                 else
                 {
-                    Assert.Fail(string.Concat("Unknown sensor type: ", sensor.GetType().FullName));
+                    var typeSensor = sensor as FuelTypeSensor;
+                    if (typeSensor != null)
+                    {
+                        var sensorValue = Connection.GetSensorValue(typeSensor, rawValue);
+                        Assert.IsNotNull(sensorValue, typeSensor.Label);
+                        Assert.IsNotNull(sensorValue.Value, typeSensor.Label);
+                        var fuelTypeIntValue = (int)sensorValue.Value;
+                        var strMaxValue = fuelTypeIntValue.ToString(CultureInfo.InvariantCulture);
+                        var message = string.Concat("Sensor (", typeSensor.Label, ") raw value: ", rawValue,
+                                                    ", computed value: ", strMaxValue);
+                        Assert.GreaterOrEqual(fuelTypeIntValue, typeSensor.MinValue, message);
+                    }
+                    else
+                    {
+                        Assert.Fail(string.Concat("Unknown sensor type: ", sensor.GetType().FullName));
+                    }
                 }
             }
 		}
@@ -184,7 +189,7 @@ namespace OBD2.Library.UnitTests
             const string split = Constants.SPLIT_VALUE_CHAR;
             var testString = "01" + split + "02" + split + "03";
             Assert.IsNotEmpty(Sensor.SplitRawValue(testString));
-            Assert.AreEqual(3, Sensor.SplitRawValue(testString).Length);
+            Assert.AreEqual(Sensor.SplitRawValue(testString).Length, 3);
 
             testString = split + split + split;
             Assert.IsNotNull(Sensor.SplitRawValue(testString));
