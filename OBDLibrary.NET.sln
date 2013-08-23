@@ -1,6 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OBDConsoleTest", "OBDConsoleTest\OBDConsoleTest.csproj", "{EBDEC924-D4C8-4B84-B6C9-0C504F4A6F4C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OBDLibrary.NET", "OBDLibrary.NET\OBDLibrary.NET.csproj", "{74C0C9AA-16DE-4D7A-9E1F-F8E408985A2E}"
