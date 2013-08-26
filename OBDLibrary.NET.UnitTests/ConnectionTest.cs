@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Globalization;
 using NUnit.Framework;
-using OBD2.Library.Sensors;
 using OBD2.Library.Sensors.ResultType;
 
 namespace OBD2.Library.UnitTests

@@ -61,7 +61,7 @@ namespace OBDConsoleTest
                 {
                     foreach (var sensor in pidList)
                     {
-                        var pid = sensor as NumericSensor;
+                        var pid = sensor;
                         if (pid == null) continue;
                         var sensorValue = connection.GetSensorValue(SensorValueMode.Mode1, pid);
                         if (sensorValue.Value.HasValue)
