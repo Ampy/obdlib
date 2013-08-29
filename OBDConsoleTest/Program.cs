@@ -22,7 +22,7 @@ namespace OBDConsoleTest
             Console.TreatControlCAsInput = false;
             Console.CancelKeyPress += CancelEventHandler;
 
-            string[] portNames = Connection.PortNames();
+            var portNames = Connection.PortNames();
             if (portNames != null && portNames.Length > 0)
             {
                 Console.WriteLine("Available port names:");

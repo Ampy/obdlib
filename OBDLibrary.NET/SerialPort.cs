@@ -4,6 +4,9 @@ using System.Text;
 
 namespace OBD2.Library
 {
+    /// <summary>
+    /// Fromt: http://dotspatial.codeplex.com/SourceControl/latest#DotSpatial.Positioning/SerialPort.cs
+    /// </summary>
     internal class SerialPort : System.IO.Ports.SerialPort
     {
         public SerialPort(string portName, int baudRate)
@@ -31,7 +34,7 @@ namespace OBD2.Library
              * with virtual COM ports (e.g. FTDI, Prolific, etc.) See the following page for details:
              * http://social.msdn.microsoft.com/Forums/en-US/netfxbcl/thread/8a1825d2-c84b-4620-91e7-3934a4d47330
              * To work around this bug, we suppress the finalizer for the BaseStream and close it ourselves instead.
-             * See the Dispose method for the other half of this workaround.
+             * See the Dispose method for the other half of this workaorund.
              */
             GC.SuppressFinalize(BaseStream);
         }
